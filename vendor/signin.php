@@ -4,6 +4,7 @@ session_start();
 $login = $_POST['login'];
 $password = $_POST['password'];
 
+$user_id = 0;
 $logPass = fopen("../db/user.txt", 'r');
 
 while(!feof($logPass)){
