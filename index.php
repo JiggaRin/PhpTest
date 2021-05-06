@@ -2,7 +2,7 @@
 session_start();
 
 if ($_SESSION['user']) {
-header('Location: profile.php');
+header('Location: /view/profile.php');
 }
 ?>
 

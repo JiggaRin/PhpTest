@@ -5,21 +5,20 @@ $login = $_POST['login'];
 $password = $_POST['password'];
 
 $user_id = 0;
-$logPass = fopen("../db/user.txt", 'r');
+$logPass = file_get_contents("../db/user.txt", 'r');
+$userData = explode("\n", $logPass);
 
-while(!feof($logPass)){
-    $data = fgets($logPass, 1024);
-    list($uid, $user, $pass) = explode('|', $data);
-    if($user == $login && $pass == $password){
-       $user_id = $uid;
-       break;
-    }
-}
-    if($user_id) {
+foreach($userData as $data){
+
+    $userInfo = explode('|', $data);
+
+    if($userInfo[1] === $login && $userInfo[2] === $password){
+        $user_id = $userInfo[0];
         $_SESSION['user'] = $login;
         header('Location: ../view/profile.php');
+        break;
     } else {
         $_SESSION['message'] = 'Неверные данные';
-        $_SESSION['count']++;
         header('Location: ../view/signinPage.php');
     }
+}
