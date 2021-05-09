@@ -30,7 +30,7 @@ if ($_SESSION['restTime'] <= 0) {
     }
 
 if ($_SESSION['attempts'] >= 3 && $_SESSION['restTime'] <= 0) {
-    $time = strtotime('+ 1 minutes');
+    $time = strtotime('+ 5 minutes');
     file_put_contents($attemptsData, $time);
     $expired = file_get_contents($attemptsData, $time);
     $_SESSION['expired'] = $expired;
