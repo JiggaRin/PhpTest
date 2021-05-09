@@ -15,8 +15,10 @@ if ($_SESSION['user']) {
 <body>
 <p class="error">
     <?php
-    if($_SESSION['message']) {
+    if($_SESSION['message'] && !isset($_SESSION['expired'])) {
         echo $_SESSION['message'];
+    }elseif (isset($_SESSION['expired'])) {
+        echo $_SESSION['warnMess'];
     }
     ?>
 </p>

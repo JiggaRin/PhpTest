@@ -2,7 +2,7 @@
 session_start();
 
 if (!$_SESSION['user']) {
-    header('Location: /');
+    header('Location: /view/signinPage.php');
 }
 ?>
 
