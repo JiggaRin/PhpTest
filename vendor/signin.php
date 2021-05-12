@@ -22,12 +22,9 @@ if ($_SESSION['restTime'] <= 0) {
         }
     }
 } else {
-        if($_SESSION['restTime'] <= 0) {
-            $_SESSION['restTime'] = 0;
-        } else {
-            header('Location: ../view/signinPage.php');
-        }
-    }
+    $_SESSION['restTime'] = 0;
+    header('Location: ../view/signinPage.php');
+}
 
 if ($_SESSION['attempts'] >= 3 && $_SESSION['restTime'] <= 0) {
     $time = strtotime('+ 5 minutes');
@@ -43,5 +40,6 @@ if (isset($_SESSION['expired']) && $_SESSION['restTime'] >= 0) {
     $_SESSION['warnMess'] = 'Попробуйте еще раз через ' . $_SESSION['restTime'] . ' секунд(ы)';
     $_SESSION['attempts'] = 0;
 } else {
+    file_put_contents($attemptsData, '');
     unset ($_SESSION['expired'], $_SESSION['warnMess'], $_SESSION['restTime']);
 }
